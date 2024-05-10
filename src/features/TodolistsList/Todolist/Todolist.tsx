@@ -7,7 +7,7 @@ import {Task} from './Task/Task'
 import {TaskStatuses, TaskType} from '../../../api/todolists-api'
 import {FilterValuesType, TodolistDomainType} from '../todolists-reducer'
 import {useDispatch} from 'react-redux'
-import {fetchTasksTC} from '../tasks-reducer'
+import {fetchTasks} from '../tasks-reducer'
 
 type PropsType = {
     todolist: TodolistDomainType
@@ -30,24 +30,24 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
         if (demo) {
             return
         }
-        const thunk = fetchTasksTC(props.todolist.id)
+        const thunk = fetchTasks(props.todolist.id)
         dispatch(thunk)
-    }, [])
+    }, [demo, dispatch, props.todolist.id])
 
     const addTask = useCallback((title: string) => {
         props.addTask(title, props.todolist.id)
-    }, [props.addTask, props.todolist.id])
+    }, [props])
 
     const removeTodolist = () => {
         props.removeTodolist(props.todolist.id)
     }
     const changeTodolistTitle = useCallback((title: string) => {
         props.changeTodolistTitle(props.todolist.id, title)
-    }, [props.todolist.id, props.changeTodolistTitle])
+    }, [props])
 
-    const onAllClickHandler = useCallback(() => props.changeFilter('all', props.todolist.id), [props.todolist.id, props.changeFilter])
-    const onActiveClickHandler = useCallback(() => props.changeFilter('active', props.todolist.id), [props.todolist.id, props.changeFilter])
-    const onCompletedClickHandler = useCallback(() => props.changeFilter('completed', props.todolist.id), [props.todolist.id, props.changeFilter])
+    const onAllClickHandler = useCallback(() => props.changeFilter('all', props.todolist.id), [props])
+    const onActiveClickHandler = useCallback(() => props.changeFilter('active', props.todolist.id), [props])
+    const onCompletedClickHandler = useCallback(() => props.changeFilter('completed', props.todolist.id), [props])
 
 
     let tasksForTodolist = props.tasks

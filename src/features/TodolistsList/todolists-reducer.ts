@@ -1,7 +1,7 @@
 import {todolistsAPI, TodolistType} from '../../api/todolists-api'
 import {Dispatch} from 'redux'
 import {RequestStatusType, SetAppErrorActionType, setAppStatusAC, SetAppStatusActionType} from '../../app/app-reducer'
-import {handleServerNetworkError} from '../../utils/error-utils'
+// import {handleServerNetworkError} from '../../utils/error-utils'
 
 const initialState: Array<TodolistDomainType> = []
 
@@ -52,7 +52,7 @@ export const fetchTodolistsTC = () => {
                 dispatch(setAppStatusAC('succeeded'))
             })
             .catch(error => {
-                handleServerNetworkError(error, dispatch);
+                // handleServerNetworkError(error, dispatch);
             })
     }
 }

@@ -35,7 +35,7 @@ export const setAppErrorAC = (error: string | null) => ({type: 'APP/SET-ERROR', 
 export const setAppStatusAC = (status: RequestStatusType) => ({type: 'APP/SET-STATUS', status} as const)
 export const setAppInitializedAC = (value: boolean) => ({type: 'APP/SET-IS-INITIALIED', value} as const)
 
-export function* initializeAppSaga(): Generator<CallEffect | PutEffect, void, any>  {
+export function* initializeAppWorkerSaga(): Generator<CallEffect | PutEffect, void, any>  {
     const res= yield call(authAPI.me)
         if (res.data.resultCode === 0) {
             yield put(setIsLoggedInAC(true));
