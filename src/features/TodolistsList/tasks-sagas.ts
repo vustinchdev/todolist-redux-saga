@@ -19,7 +19,7 @@ export const fetchTasks = (todolistId: string) => ({type: 'TASKS/FETCH-TASKS', t
 
 export function* removeTaskWorkerSaga (action: ReturnType<typeof removeTask>):
 Generator<CallEffect | PutEffect, void, AxiosResponse<ResponseType>>{
-    const res = yield call(todolistsAPI.deleteTask, action.todolistId, action.taskId) 
+    yield call(todolistsAPI.deleteTask, action.todolistId, action.taskId) 
     yield put(removeTaskAC(action.taskId, action.todolistId))
 }
 
