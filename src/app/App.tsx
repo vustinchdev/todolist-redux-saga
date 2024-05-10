@@ -15,10 +15,11 @@ import {TodolistsList} from '../features/TodolistsList/TodolistsList'
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
 import {useDispatch, useSelector} from 'react-redux'
 import {AppRootStateType} from './store'
-import { RequestStatusType, initializeApp} from './app-reducer'
+import { RequestStatusType} from './app-reducer'
 import {BrowserRouter, Route} from 'react-router-dom'
 import {Login} from '../features/Login/Login'
 import {logoutTC} from '../features/Login/auth-reducer'
+import { initializeApp } from './app-sagas'
 
 type PropsType = {
     demo?: boolean
